@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="index.css" />
+
+    <title>Age calculator app</title>
+  </head>
+  <body>
+    <main class="app">
+      <section class="calc-container">
+        <div class="calc-header">
+          <div class="inputs-wrapper">
+            <div class="input-container" id="day-container">
+              <label for="day">Day</label>
+              <input type="text" id="day" placeholder="DD" />
+            </div>
+
+            <div class="input-container" id="month-container">
+              <label for="month">Month</label>
+              <input type="text" id="month" placeholder="MM" />
+            </div>
+
+            <div class="input-container" id="year-container">
+              <label for="year">Year</label>
+              <input type="text" id="year" placeholder="YYYY" />
+            </div>
+          </div>
+          <button type="click" class="btn-submit"></button>
+        </div>
+        <div class="calc-content">
+          <div class="calc-result-wrapper">
+            <p class="calc-result">
+              <span class="number-result" id="year-result">--</span> years
+            </p>
+            <p class="calc-result">
+              <span class="number-result" id="month-result">--</span> months
+            </p>
+            <p class="calc-result">
+              <span class="number-result" id="day-result">--</span> days
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
