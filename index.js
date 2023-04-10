@@ -10,7 +10,11 @@ const monthResult = document.querySelector("#month-result");
 const dayResult = document.querySelector("#day-result");
 
 function validateInputDayValue() {
-  if (inputDay.value.length !== 2) {
+  if (inputDay.value.length === 0) {
+    createSpanErrorDayMsg("this field is required");
+    return false;
+  }
+  if (inputDay.value.length > 2) {
     createSpanErrorDayMsg("must be a valid day");
     return false;
   }
@@ -39,7 +43,11 @@ function validateInputDayValue() {
 }
 
 function validateInputMonthValue() {
-  if (inputMonth.value.length !== 2) {
+  if (inputMonth.value.length === 0) {
+    createSpanErrorMonthMsg("this field is required");
+    return false;
+  }
+  if (inputMonth.value.length > 2) {
     createSpanErrorMonthMsg("must be a valid month");
     return false;
   }
@@ -57,6 +65,11 @@ function validateInputYearValue() {
   const birthDay = new Date(
     `${inputYear.value}-${inputMonth.value}-${inputDay.value}T00:00:00`
   ).getTime();
+
+  if (inputYear.value.length === 0) {
+    createSpanErrorYearMsg("this field is required");
+    return false;
+  }
 
   if (inputYear.value.length !== 4) {
     createSpanErrorYearMsg("invalid year format");
@@ -162,6 +175,19 @@ function initialInputLabelStyle() {
   inputYear.style.borderColor = "hsl(0, 0%, 86%)";
 }
 
+function formattedBirthDayToCalculate() {
+  let day = inputDay.value;
+  let month = inputMonth.value;
+  let year = inputYear.value;
+  if (day.length === 1) {
+    day = day.padStart(2, "0");
+  }
+  if (month.length === 1) {
+    month = month.padStart(2, "0");
+  }
+  return `${year}-${month}-${day}T00:00:00`;
+}
+
 function calculateAge() {
   resetErrorMessages();
   if (!allInputValuesIsValid()) {
@@ -171,9 +197,7 @@ function calculateAge() {
   }
   initialInputLabelStyle();
   const today = new Date();
-  const birthDay = new Date(
-    `${inputYear.value}-${inputMonth.value}-${inputDay.value}T00:00:00`
-  );
+  const birthDay = new Date(formattedBirthDayToCalculate());
   const diffYear = today.getFullYear() - birthDay.getFullYear();
   const diffMonths = today.getMonth() - birthDay.getMonth();
   const diffDays = today.getDate() - birthDay.getDate();
